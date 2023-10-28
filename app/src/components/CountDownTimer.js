@@ -37,7 +37,13 @@ export default function CountDownTimer() {
                     setSecond={setSecond}
                     onStartButton={onStartButton}
                 />
-                <Clock clockTime={clockTime} setClockTime={setClockTime}/>
+                <Clock 
+                    hour={hour}
+                    minutes={minutes}
+                    second={second}
+                    clockTime={clockTime} 
+                    setClockTime={setClockTime}
+                />
                 <TimerButtons />
             </section>
         </div>

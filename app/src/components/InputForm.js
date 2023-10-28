@@ -18,7 +18,9 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="hour"
                     type="number" 
                     value={hour}
-                    onChange={event => setHour(event.target.value)}
+                    onChange={event => setHour(
+                        event.target.value < 0 ? 0 : event.target.value > 23 ? 23 : event.target.value
+                        )}
                     min="00" 
                     max="23" 
                     placeholder="時間"
@@ -27,7 +29,9 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="minutes"
                     type="number" 
                     value={minutes}
-                    onChange={event => setMinutes(event.target.value)}
+                    onChange={event => setMinutes(
+                        event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
+                        )}
                     min="00"
                     max="59" 
                     placeholder="分"
@@ -36,7 +40,9 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="second"
                     type="number" 
                     value={second}
-                    onChange={event => setSecond(event.target.value)}
+                    onChange={event => setSecond(
+                        event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
+                        )}
                     min="00"
                     max="59" 
                     placeholder="秒"
