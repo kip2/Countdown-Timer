@@ -8,18 +8,6 @@ echo "---------------------------------"
 # プロジェクト名
 read ipt
 
-# try catchのための設定
-set -e
-current_dir=$(pwd)
-
-# error処理
-# 作成したプロジェクトのディレクトリを削除する
-trap catch ERR
-function catch {
-    cd $current_dir
-    rm -rf $ipt
-}
-
 # ディレクトリの作成
 mkdir $ipt
 
@@ -72,10 +60,16 @@ module.exports = {
 EOF
 
 # babelrcに設定を追加
-echo '{\n    "presets": ["@babel/preset-env", "@babel/preset-react"]\n}' > .babelrc
+cat << EOF > .babelrc
+{
+    "presets": ["@babel/preset-env", "@babel/preset-react"]
+}
+EOF
+
 
 # package.jsonに定義を追加
-sed -i '/"scripts": {/a \ \     "build": "webpack --mode production",' package.json
+sed -i '/"scripts": {/a \ \   "build": "webpack --mode production", ' package.json
+
 
 # distにバンドルファイルをロードするファイルを設置
 mkdir dist
@@ -109,7 +103,7 @@ EOF
 # src/components/Hello.jsの作成
 cat << EOF > ./src/components/App.js
 import React from "react";
-import sytles from "../css/styles.css";
+import styles from "../css/styles.css";
 
 export default function App() {
 	return (
@@ -193,5 +187,5 @@ npm run build
     open http://localhost:3000
 } & 
 
-serve ./dist
+serve -l 3000 ./dist
 EOF
