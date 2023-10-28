@@ -6,25 +6,25 @@ export default function Clock({
     hour,
     minutes,
     second,
-    clockTime, 
-    setClockTime,
-    moveTimer = f => f 
+    // clockTime, 
+    // setClockTime,
+    // moveTimer = f => f 
 }) {
 
-    useEffect(() => {
-        if (clockTime <= 0) {
-            return;
-        }
+    // useEffect(() => {
+    //     if (clockTime <= 0) {
+    //         return;
+    //     }
 
-        const timer = setInterval(() => {
-            // moveTimer(clockTime - 1);
-            setClockTime(clockTime - 1);
-        }, 1000);
+    //     const timer = setInterval(() => {
+    //         // moveTimer(clockTime - 1);
+    //         setClockTime(clockTime - 1);
+    //     }, 1000);
 
-        return () => {
-            timer();
-        };
-    }, clockTime)
+    //     return () => {
+    //         timer();
+    //     };
+    // }, clockTime)
 
     return (
         <div className={styles.clock}>
