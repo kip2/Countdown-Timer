@@ -28,7 +28,6 @@ export default function Clock({
 
     return (
         <div className={styles.clock}>
-            {/* <h3>{formatTime(clockTime)}</h3> */}
             <h3>
                 {hour === 0 || hour === '' ? '00' : hour < 10 ? '0' + hour : hour}
                 :

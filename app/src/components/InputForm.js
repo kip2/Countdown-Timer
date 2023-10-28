@@ -11,6 +11,13 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
         setSecond("");
     };
 
+    const handleInputChange = e => {
+        // 数字以外の入力は""に直す
+        e.target.value = e.target.value.replace(/[^0-9]/g, "");
+        // 00なら0
+        if (e.target.value === '00') e.target.value = 0;
+    }
+
     return (
         <>
             <form onSubmit={submit} className={styles.container}>
@@ -18,6 +25,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="hour"
                     type="number" 
                     value={hour}
+                    onInput={handleInputChange}
                     onChange={event => setHour(
                         event.target.value < 0 ? 0 : event.target.value > 23 ? 23 : event.target.value
                         )}
@@ -29,6 +37,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="minutes"
                     type="number" 
                     value={minutes}
+                    onInput={handleInputChange}
                     onChange={event => setMinutes(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
                         )}
@@ -40,6 +49,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="second"
                     type="number" 
                     value={second}
+                    onInput={handleInputChange}
                     onChange={event => setSecond(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
                         )}
