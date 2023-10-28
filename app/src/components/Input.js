@@ -3,7 +3,12 @@ import React from "react";
 export default function Input() {
     return (
         <>
-            <h3>Input</h3>
+            <form action="" >
+                <input />
+                <input />
+                <input />
+                <button submit="">開始</button>
+            </form>
         </>
     );
 }

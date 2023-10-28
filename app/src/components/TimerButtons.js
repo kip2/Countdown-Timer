@@ -3,7 +3,9 @@ import React from "react";
 export default function TimerButtons() {
     return (
         <>
-            <h3>TimerButtons</h3>
+            <button >一時停止</button>
+            <button >再スタート</button>
+            <button >リセット</button>
         </>
     );
 }
