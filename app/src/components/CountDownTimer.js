@@ -8,7 +8,6 @@ export default function CountDownTimer() {
     return (
         <div className={styles.outer}>
             <section>
-                <h2>CountDownTimer</h2>
                 <Input />
                 <Clock />
                 <TimerButtons />
