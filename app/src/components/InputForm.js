@@ -6,9 +6,6 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
     const submit = e => {
         e.preventDefault();
         onStartButton(hour, minutes, second);
-        setHour("");
-        setMinutes("");
-        setSecond("");
     };
 
     const handleInputChange = e => {
