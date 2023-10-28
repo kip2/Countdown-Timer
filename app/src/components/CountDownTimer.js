@@ -7,7 +7,7 @@ import { formatTime } from "./formatTIme";
 import { transferSeconds } from "./transferSeconds";
 
 export default function CountDownTimer() {
-    const [movedTimer] = useState(false);
+    const [clockTime, setClockTime] = useState(0);
 
 	const onStartButton = (hour, minutes, second) => {
         // 空白文字なら0に初期化する
@@ -15,16 +15,18 @@ export default function CountDownTimer() {
         if (minutes === "") minutes = 0;
         if (second === "") second = 0;
 
+
         let time = transferSeconds(hour, minutes, second);
         alert("time: " + time);
         alert("format time: " + formatTime(time));
+        setClockTime(time);
 	};
 
     return (
         <div className={styles.outer}>
             <section>
                 <InputForm onStartButton={onStartButton}/>
-                <Clock />
+                <Clock clockTime={clockTime} setClockTime={setClockTime}/>
                 <TimerButtons />
             </section>
         </div>
