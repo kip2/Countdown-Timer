@@ -31,7 +31,6 @@ export default function CountDownTimer() {
             if (time <= 0) {
                 clearInterval(id);
                 alert("タイマーアップ！");
-                setIntervalId(null);
             }
         }, 1000);
         setIntervalId(id);
@@ -58,7 +57,6 @@ export default function CountDownTimer() {
         setSecond("");
         if (intervalId) {
             clearInterval(intervalId);
-            setIntervalId(null);
         }
     }
 
