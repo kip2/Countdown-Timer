@@ -11,34 +11,6 @@ export default function CountDownTimer() {
     const [minutes, setMinutes] = useState("");
     const [second, setSecond] = useState(""); 
     const [intervalId, setIntervalId] = useState(null);
-    const [isActive, setIsActive] = useState(false);
-
-    useEffect(() => {
-        if(isActive && !intervalId) {
-            const id = setInterval(() => {
-                let time = transferSeconds(hour, minutes, second);
-                time = time > 0 ? time - 1 : time;
-                [hour, minutes, second] = formatTime(time);
-                setHour(hour);
-                setMinutes(minutes);
-                setSecond(second);
-
-                if (time <= 0) {
-                    clearInterval(id);
-                    alert("タイマーアップ！");
-                    setIsActive(false);
-                    setIntervalId(null);
-                }
-            }, 1000);
-            setIntervalId(id);
-        }
-
-        return () => {
-            if (intervalId) {
-                clearInterval(intervalId);
-            }
-        };
-    }, [isActive, intervalId]);
 
 	const onStartButton = (hour, minutes, second) => {
         // 空白文字なら0に初期化する
@@ -59,6 +31,7 @@ export default function CountDownTimer() {
             if (time <= 0) {
                 clearInterval(id);
                 alert("タイマーアップ！");
+                setIntervalId(null);
             }
         }, 1000);
         setIntervalId(id);
@@ -74,16 +47,8 @@ export default function CountDownTimer() {
 
 
     const handlePause = () => {
-        setIsActive(false);
         if (intervalId) {
             clearInterval(intervalId);
-        }
-    };
-
-    const handleResume = () => {
-        setIsActive(true);
-        if (intervalId) {
-            setIntervalId(intervalId);
         }
     };
 
@@ -93,6 +58,7 @@ export default function CountDownTimer() {
         setSecond("");
         if (intervalId) {
             clearInterval(intervalId);
+            setIntervalId(null);
         }
     }
 
@@ -112,12 +78,13 @@ export default function CountDownTimer() {
                     hour={hour}
                     minutes={minutes}
                     second={second}
-                    // clockTime={clockTime} 
-                    // setClockTime={setClockTime}
                 />
                 <TimerButtons 
+                    hour={hour}
+                    minutes={minutes}
+                    second={second}
                     onStop={handlePause}
-                    onResume={handleResume}
+                    onResume={onStartButton}
                     onReset={handleReset}
                 />
             </section>

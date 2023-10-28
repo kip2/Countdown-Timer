@@ -2,6 +2,9 @@ import React from "react";
 import styles from "../css/TimerButtons.css";
 
 export default function TimerButtons({
+    hour, 
+    minutes,
+    second,
     onStop = f => f,
     onResume = f => f,
     onReset = f => f,
@@ -14,7 +17,7 @@ export default function TimerButtons({
                     一時停止
             </button>
             <button 
-                onClick={() => onResume()}>
+                onClick={() => onResume(hour, minutes, second)}>
                     再スタート
             </button>
             <button 
