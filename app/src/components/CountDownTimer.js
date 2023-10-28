@@ -30,7 +30,7 @@ export default function CountDownTimer() {
 
             if (time <= 0) {
                 clearInterval(id);
-                alert("タイマーアップ！");
+                alert("時間ですよ！");
             }
         }, 1000);
         setIntervalId(id);
