@@ -4,7 +4,13 @@ RecursionCSのReactコースの課題
 
 # 概要
 
-timerアプリです
+シンプルなtimerアプリです
+
+スタート、一時停止、再開の基本機能と、タイマーのリセット機能があります。
+
+以下のURLからアクセス可能です
+
+[Let's Access](https://kip2.github.io/Countdown-Timer-RecursionCS/)
 
 # 動作イメージ
 ![動作イメージ](./doc/timer.gif)
@@ -38,4 +44,26 @@ timerアプリです
 タイマーの秒数をリセットします
 
 
+---
 
+# その他
+
+
+
+
+# 参考資料
+
+以下の書籍を参考にしました
+
+[Reactハンズオンラーニング](https://www.oreilly.co.jp//books/9784873119380/)
+
+
+
+
+# setup.shについて
+
+reactをローカル環境で揃える際に必要なものをシェルスクリプト化
+
+以下のリポジトリに詳しくまとまっています
+
+https://github.com/kip2/ShellScripts/tree/main/React-StartUp
