@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "../css/Clock.css";
+import { formatTime } from "./formatTIme";
 
-export default function Clock({ movedTimer, moveTimer = f => f }) {
-    const [clockTime] = useState(60);
+export default function Clock({ time=0, moveTimer = f => f }) {
+    const [clockTime] = useState(time);
 
     useEffect(() => {
         if (clockTime <= 0) {
@@ -20,7 +21,7 @@ export default function Clock({ movedTimer, moveTimer = f => f }) {
 
     return (
         <div className={styles.clock}>
-            <h3 >{clockTime}</h3>
+            <h3 >{formatTime(clockTime)}</h3>
         </div>
     );
 }

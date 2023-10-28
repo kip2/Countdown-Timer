@@ -17,5 +17,5 @@ export const formatTime = (seconds) => {
 
         second = seconds;
 
-		return (`${hour}:${minutes}:${second}`) ;
+		return (`${hour < 10 ? '0' + hour : hour}:${minutes < 10 ? '0' + minutes : minutes}:${second < 10 ? '0' + second : second}`) ;
 }
