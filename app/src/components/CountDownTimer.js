@@ -7,7 +7,6 @@ import { formatTime } from "./formatTIme";
 import { transferSeconds } from "./transferSeconds";
 
 export default function CountDownTimer() {
-    // const [clockTime, setClockTime] = useState(0);
     const [hour, setHour] = useState("");
     const [minutes, setMinutes] = useState("");
     const [second, setSecond] = useState(""); 
@@ -18,12 +17,6 @@ export default function CountDownTimer() {
         if (hour === "") hour = 0;
         if (minutes === "") minutes = 0;
         if (second === "") second = 0;
-
-
-        // let time = transferSeconds(hour, minutes, second);
-
-        // const [h, m, s] = formatTime(time);
-        // alert("format time: " + h + ":" + m + ":" + s);
 
 
         const intervalTime = setInterval(() => {
@@ -41,7 +34,6 @@ export default function CountDownTimer() {
         }, 1000);
 
         setIntervalId(intervalId);
-        // setClockTime(time);
 	};
 
     useEffect(() => {
