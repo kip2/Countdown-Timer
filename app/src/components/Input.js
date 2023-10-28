@@ -5,9 +5,9 @@ export default function Input() {
     return (
         <>
             <form action="" className={styles.outer}>
-                <input placeholder="時間"/>
-                <input placeholder="分"/>
-                <input placeholder="秒"/>
+                <input type="number" min="00" max="24" placeholder="時間"/>
+                <input type="number" min="00" max="60" placeholder="分"/>
+                <input type="number" min="00" max="60"  placeholder="秒"/>
                 <button submit="">開始</button>
             </form>
         </>

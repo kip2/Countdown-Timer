@@ -3,3 +3,46 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 60px;
 }
+
+.input-container {
+    position: relative;
+}
+
+.input-field {
+    font-size: 1.2em;
+    font-family: 'Arial', sans-serif;
+    padding: 10px 20px;
+    width: 200px;
+    color: #61DAFB;
+    background-color: #282C34;
+    border: 1px solid #61DAFB;
+    border-radius: 5px;
+    outline: none;
+    position: relative;
+    z-index: 1;
+}
+
+.input-field::placeholder {
+    color: #61DAFB;
+    opacity: 0.5;
+}
+
+.input-background {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right, #282C34, #61DAFB, #282C34);
+    -webkit-background-clip: text;
+    color: transparent;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+    opacity: 0.5;
+}
+
+.input-container:focus-within .input-background {
+    opacity: 1;
+}

@@ -55,3 +55,40 @@ h1:hover {
 h1:hover::before {
     animation: underlineAnimation 0.5s forwards;
 }
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-family: 'Arial', sans-serif;
+    color: #61DAFB;
+    background-image: linear-gradient(to right, #282C34, #61DAFB, #282C34);
+    -webkit-background-clip: text;
+    color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    left: 5%; 
+    right: 5%; 
+    bottom: -5px; 
+    height: 3px;
+    background-image: linear-gradient(to right, #61DAFB, #3BAEDC);
+    border-radius: 3px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    animation: titleHover 0.5s forwards;
+}
+
+button:hover::before {
+    animation: underlineAnimation 0.5s forwards;
+    opacity: 1;
+}
