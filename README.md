@@ -7,7 +7,7 @@ RecursionCSのReactコースの課題
 timerアプリです
 
 # 動作イメージ
-![動作イメージ](./doc/timer.mov)
+![動作イメージ](./doc/timer.gif)
 
 # 使い方
 
