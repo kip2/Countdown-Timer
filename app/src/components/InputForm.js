@@ -22,6 +22,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="hour"
                     type="number" 
                     value={hour}
+                    inputmode="numeric"
                     onInput={handleInputChange}
                     onChange={event => setHour(
                         event.target.value < 0 ? 0 : event.target.value > 23 ? 23 : event.target.value
@@ -34,6 +35,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="minutes"
                     type="number" 
                     value={minutes}
+                    inputmode="numeric"
                     onInput={handleInputChange}
                     onChange={event => setMinutes(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
@@ -46,6 +48,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="second"
                     type="number" 
                     value={second}
+                    inputmode="numeric"
                     onInput={handleInputChange}
                     onChange={event => setSecond(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
