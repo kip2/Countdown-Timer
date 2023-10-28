@@ -8,6 +8,9 @@ import { transferSeconds } from "./transferSeconds";
 
 export default function CountDownTimer() {
     const [clockTime, setClockTime] = useState(0);
+    const [hour, setHour] = useState("");
+    const [minutes, setMinutes] = useState("");
+    const [second, setSecond] = useState(""); 
 
 	const onStartButton = (hour, minutes, second) => {
         // 空白文字なら0に初期化する
@@ -17,15 +20,23 @@ export default function CountDownTimer() {
 
 
         let time = transferSeconds(hour, minutes, second);
-        alert("time: " + time);
-        alert("format time: " + formatTime(time));
+        // alert("time: " + time);
+        // alert("format time: " + formatTime(time));
         setClockTime(time);
 	};
 
     return (
         <div className={styles.outer}>
             <section>
-                <InputForm onStartButton={onStartButton}/>
+                <InputForm 
+                    hour={hour}
+                    setHour={setHour}
+                    minutes={minutes}
+                    setMinutes={setMinutes}
+                    second={second}
+                    setSecond={setSecond}
+                    onStartButton={onStartButton}
+                />
                 <Clock clockTime={clockTime} setClockTime={setClockTime}/>
                 <TimerButtons />
             </section>

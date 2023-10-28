@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import styles from "../css/InputForm.css";
 
-export default function InputForm({ onStartButton = f => f }) {
-    const [hour, setHour] = useState("");
-    const [minutes, setMinutes] = useState("");
-    const [second, setSecond] = useState(""); 
+export default function InputForm({ hour, setHour, minutes , setMinutes, second , setSecond, onStartButton = f => f }) {
 
     const submit = e => {
         e.preventDefault();
