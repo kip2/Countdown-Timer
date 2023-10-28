@@ -11,6 +11,7 @@ export default function CountDownTimer() {
     const [minutes, setMinutes] = useState("");
     const [second, setSecond] = useState(""); 
     const [intervalId, setIntervalId] = useState(null);
+    const [isActive, setIsActive] = useState(false);
 
 	const onStartButton = (hour, minutes, second) => {
         // 空白文字なら0に初期化する
@@ -18,6 +19,7 @@ export default function CountDownTimer() {
         if (minutes === "") minutes = 0;
         if (second === "") second = 0;
 
+        setIsActive(true);
 
         const intervalTime = setInterval(() => {
             let time = transferSeconds(hour, minutes, second);
@@ -33,8 +35,9 @@ export default function CountDownTimer() {
             }
         }, 1000);
 
-        setIntervalId(intervalId);
+        setIntervalId(intervalTime);
 	};
+    
 
     useEffect(() => {
         return () => {
@@ -44,6 +47,13 @@ export default function CountDownTimer() {
         };
     }, [intervalId]);
 
+    const handlePause = () => {
+        setIsActive(false);
+    };
+
+    const handleResume = () => {
+        setIsActive(true);
+    };
 
     return (
         <div className={styles.outer}>
@@ -64,7 +74,10 @@ export default function CountDownTimer() {
                     // clockTime={clockTime} 
                     // setClockTime={setClockTime}
                 />
-                <TimerButtons />
+                <TimerButtons 
+                    onStop={handlePause}
+                    onResume={handleResume}
+                />
             </section>
         </div>
     );
