@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "../css/Clock.css";
-import { formatTime } from "./formatTIme";
 
 export default function Clock({
     hour,
