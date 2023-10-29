@@ -5,6 +5,7 @@
   "main": "index.js",
   "homepage": "https://kip2.github.io/Countdown-Timer-RecursionCS",
   "scripts": {
+    "lint": "eslint",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "build": "webpack --mode production",
