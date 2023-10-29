@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo "---------------------------------"
 echo "プロジェクト名を入力してください"
 echo "---------------------------------"
@@ -20,7 +19,7 @@ npm init -y
 # 必要な依存関係のインストール
 npm i react react-dom serve
 npm i --save-dev  webpack webpack-cli
-npm i --save-dev babel-loader @babel/core @babel/preset-env @babel/preset-react
+npm i --save-dev babel-loader @babel/core @babel/preset-env @babel/preset-react @babel/register
 npm i --save-dev style-loader css-loader
 
 # eslintのインストール
@@ -55,15 +54,25 @@ webpack.config.js
 development.js
 EOF
 
+
 # webpackの設定を記述
 cat << EOF > webpack.config.js
-var path = require("path");
+require('@babel/register');
+module.exports = require('./development');
+EOF
 
-module.exports = {
+# webpackの実際の設定(ES6式の記述で設定)
+cat << EOF > development.js
+import path from "path"
+
+const src = path.resolve(__dirname, "src")
+const dist = path.resolve(__dirname, "dist/assets")
+
+export default {
 	devtool: "source-map",
-	entry: "./src/index.js",
+	entry: src + "/index.js",
 	output: {
-		path: path.join(__dirname, "dist", "assets"),
+		path: dist,
 		filename: "bundle.js"
 	},
 	module: {
@@ -92,17 +101,12 @@ module.exports = {
 };
 EOF
 
-# babelrcに設定を追加
-cat << EOF > .babelrc
-{
-    "presets": ["@babel/preset-env", "@babel/preset-react"]
-}
-EOF
 
+# babelrcに設定を追加
+echo '{\n    "presets": ["@babel/preset-env", "@babel/preset-react"]\n}' > .babelrc
 
 # package.jsonに定義を追加
-sed -i '/"scripts": {/a \ \   "build": "webpack --mode production", ' package.json
-
+sed -i '/"scripts": {/a \ \     "build": "webpack --mode production",' package.json
 
 # distにバンドルファイルをロードするファイルを設置
 mkdir dist
@@ -127,22 +131,23 @@ mkdir -p src/components
 # src/index.jsの作成
 cat << EOF > ./src/index.js
 import React from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./components/App";
 
-render(<App />, document.getElementById("root"));
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);
 EOF
 
 # src/components/Hello.jsの作成
 cat << EOF > ./src/components/App.js
 import React from "react";
-import styles from "../css/styles.css";
+import "../css/styles.css";
 
 export default function App() {
 	return (
-	  <>
-	    <h1>Hello React!</h1>
-	  </>
+		<>
+			<h1>Hello React!</h1>
+		</>
 	);
 }
 EOF
@@ -220,5 +225,11 @@ npm run build
     open http://localhost:3000
 } & 
 
-serve -l 3000 ./dist
+serve ./dist
 EOF
+
+# ちょっと間をおく
+sleep 2
+
+# ビルドのテスト
+. run.sh
