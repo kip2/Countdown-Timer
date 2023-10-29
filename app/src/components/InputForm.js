@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../css/InputForm.css";
 
 export default function InputForm({ hour, setHour, minutes , setMinutes, second , setSecond, onStartButton = f => f }) {
@@ -22,7 +22,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="hour"
                     type="number" 
                     value={hour}
-                    inputmode="numeric"
+                    inputMode="numeric"
                     onInput={handleInputChange}
                     onChange={event => setHour(
                         event.target.value < 0 ? 0 : event.target.value > 23 ? 23 : event.target.value
@@ -35,7 +35,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="minutes"
                     type="number" 
                     value={minutes}
-                    inputmode="numeric"
+                    inputMode="numeric"
                     onInput={handleInputChange}
                     onChange={event => setMinutes(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
@@ -48,7 +48,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     name="second"
                     type="number" 
                     value={second}
-                    inputmode="numeric"
+                    inputMode="numeric"
                     onInput={handleInputChange}
                     onChange={event => setSecond(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
