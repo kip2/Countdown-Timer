@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://kip2.github.io/Countdown-Timer-RecursionCS",
+  "homepage": "https://kip2.github.io/Countdown-Timer",
   "scripts": {
     "lint": "eslint",
     "predeploy": "npm run build",
