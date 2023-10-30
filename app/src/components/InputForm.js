@@ -80,7 +80,6 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     max="59" 
                     placeholder="秒"
                 />
-                <button>開始</button>
             </form>
         </>
     );

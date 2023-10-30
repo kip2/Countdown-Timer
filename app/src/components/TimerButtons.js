@@ -13,12 +13,12 @@ export default function TimerButtons({
     return (
         <div className={styles.timerButton}>
             <button 
-                onClick={() => onStop()}>
-                    一時停止
+                onClick={() => onResume(hour, minutes, second)}>
+                    スタート
             </button>
             <button 
-                onClick={() => onResume(hour, minutes, second)}>
-                    再スタート
+                onClick={() => onStop()}>
+                    ストップ
             </button>
             <button 
                 onClick={() => onReset()}>
