@@ -15,6 +15,12 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
         if (e.target.value === '00') e.target.value = 0;
     }
 
+    const handleWheel = (e, setter, max) => {
+        e.preventDefault();
+        const newValue = e.target.value - Math.sign(e.deltaY);
+        setter(newValue < 0 ? 0 : newValue > max ? max : newValue);
+    }
+
     return (
         <>
             <form onSubmit={submit} className={styles.container}>
@@ -27,6 +33,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     onChange={event => setHour(
                         event.target.value < 0 ? 0 : event.target.value > 23 ? 23 : event.target.value
                         )}
+                    onWheel={e => handleWheel(e, setHour, 23)}
                     min="00" 
                     max="23" 
                     placeholder="時間"
@@ -40,6 +47,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     onChange={event => setMinutes(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
                         )}
+                    onWheel={e => handleWheel(e, setMinutes, 59)}
                     min="00"
                     max="59" 
                     placeholder="分"
@@ -53,6 +61,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     onChange={event => setSecond(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
                         )}
+                    onWheel={e => handleWheel(e, setSecond, 59)}
                     min="00"
                     max="59" 
                     placeholder="秒"
