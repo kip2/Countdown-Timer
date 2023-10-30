@@ -10,7 +10,7 @@ RecursionCSのReactコースの課題
 
 以下のURLからアクセス可能です
 
-[Let's Access](https://kip2.github.io/Countdown-Timer-RecursionCS/)
+[Let's Access](https://kip2.github.io/Countdown-Timer/)
 
 # 動作イメージ
 ![動作イメージ](./doc/timer.gif)
