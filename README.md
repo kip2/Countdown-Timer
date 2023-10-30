@@ -1,4 +1,4 @@
-# Countdown-Timer-RecursionCS
+# Countdown　Timer
 
 RecursionCSのReactコースの課題
 
