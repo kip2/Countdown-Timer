@@ -1,7 +1,16 @@
 import React, { useRef, useEffect } from "react";
 import styles from "../css/InputForm.css";
 
-export default function InputForm({ hour, setHour, minutes , setMinutes, second , setSecond, onStartButton = f => f }) {
+export default function InputForm({ 
+    hour, 
+    setHour, 
+    minutes , 
+    setMinutes, 
+    second , 
+    setSecond, 
+    isActive,
+    onStartButton = f => f 
+}) {
     const hourRef = useRef(null);
     const minuteRef = useRef(null);
     const secondRef = useRef(null);
@@ -12,6 +21,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
     };
 
     const handleInputChange = e => {
+        if(!isActive) return;
         // 数字以外の入力は""に直す
         e.target.value = e.target.value.replace(/[^0-9]/g, "");
         // 00なら0
@@ -19,6 +29,7 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
     }
 
     const handleWheel = (e, setter, max) => {
+        if(!isActive) return;
         e.preventDefault();
         const newValue = e.target.value - Math.sign(e.deltaY);
         setter(newValue < 0 ? 0 : newValue > max ? max : newValue);
