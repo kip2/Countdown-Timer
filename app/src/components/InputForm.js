@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styles from "../css/InputForm.css";
 
 export default function InputForm({ hour, setHour, minutes , setMinutes, second , setSecond, onStartButton = f => f }) {
+    const hourRef = useRef(null);
+    const minuteRef = useRef(null);
+    const secondRef = useRef(null);
 
     const submit = e => {
         e.preventDefault();
@@ -21,10 +24,22 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
         setter(newValue < 0 ? 0 : newValue > max ? max : newValue);
     }
 
+    useEffect(() => {
+        const addEvent = (element, setter, max) => {
+            const handle = (e) => handleWheel(e, setter, max);
+            element.addEventListener('wheel', handle, { passive: false });
+            return () => element.removeEventListener('wheel', handle);
+        }
+        addEvent(hourRef.current, setHour, 23);
+        addEvent(minuteRef.current, setMinutes, 59);
+        addEvent(secondRef.current, setSecond, 59);
+    }, []);
+
     return (
         <>
             <form onSubmit={submit} className={styles.container}>
                 <input
+                    ref={hourRef}
                     name="hour"
                     type="number" 
                     value={hour}
@@ -33,12 +48,12 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     onChange={event => setHour(
                         event.target.value < 0 ? 0 : event.target.value > 23 ? 23 : event.target.value
                         )}
-                    onWheel={e => handleWheel(e, setHour, 23)}
                     min="00" 
                     max="23" 
                     placeholder="時間"
                 />
                 <input 
+                    ref={minuteRef}
                     name="minutes"
                     type="number" 
                     value={minutes}
@@ -47,12 +62,12 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     onChange={event => setMinutes(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
                         )}
-                    onWheel={e => handleWheel(e, setMinutes, 59)}
                     min="00"
                     max="59" 
                     placeholder="分"
                 />
                 <input 
+                    ref={secondRef}
                     name="second"
                     type="number" 
                     value={second}
@@ -61,7 +76,6 @@ export default function InputForm({ hour, setHour, minutes , setMinutes, second 
                     onChange={event => setSecond(
                         event.target.value < 0 ? 0 : event.target.value > 59 ? 59 : event.target.value
                         )}
-                    onWheel={e => handleWheel(e, setSecond, 59)}
                     min="00"
                     max="59" 
                     placeholder="秒"
